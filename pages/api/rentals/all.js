@@ -1,5 +1,5 @@
-import { supabase } from '../../../../lib/supabase';
-import { verifyToken, handleCors } from '../../../../lib/auth';
+import { supabase } from '../../../lib/supabase';
+import { verifyToken, handleCors } from '../../../lib/auth';
 
 // GET /api/rentals/all — Ambil SEMUA rental (admin only)
 export default async function handler(req, res) {
