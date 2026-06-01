@@ -73,7 +73,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ success: false, message: `Sepeda ${bike.name} sedang tidak tersedia` });
       }
 
-      // Buat rental dengan status 'renting' (langsung aktif tanpa persetujuan admin)
+      // Buat rental dengan status 'pending' (menunggu persetujuan admin)
       const { data: rental, error: rentalError } = await supabase
         .from('rentals')
         .insert([{
@@ -83,8 +83,7 @@ export default async function handler(req, res) {
           duration: parseInt(duration),
           total_price: parseFloat(total_price),
           payment_method: payment_method || 'Cash',
-          status: 'renting',
-          start_time: new Date().toISOString(),
+          status: 'pending'
         }])
         .select()
         .single();
